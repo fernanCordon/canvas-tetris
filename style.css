@@ -4,15 +4,58 @@
   padding: 0;
 }
 
+:root {
+  --bg: #0f0f17;
+  --text: #e0e0e0;
+  --accent: #7aa2f7;
+  --board-bg: #1a1a25;
+  --board-border: #2a2a3a;
+  --label: #555570;
+  --controls-text: #888;
+  --kbd-bg: #22223a;
+  --kbd-border: #3a3a5a;
+  --kbd-color: #aaa;
+  --overlay-bg: rgba(10, 10, 20, 0.75);
+  --overlay-title: #e57373;
+  --toggle-track: #3a3a5a;
+  --toggle-thumb: #888;
+  --toggle-text: #888;
+  --btn-bg: #7aa2f7;
+  --btn-color: #0f0f17;
+  --btn-hover: #9bbdff;
+}
+
+body.light {
+  --bg: #f0f0f8;
+  --text: #1a1a2e;
+  --accent: #3a5fd6;
+  --board-bg: #e0e0f0;
+  --board-border: #b0b0cc;
+  --label: #7070a0;
+  --controls-text: #555;
+  --kbd-bg: #d0d0e8;
+  --kbd-border: #9090b8;
+  --kbd-color: #333;
+  --overlay-bg: rgba(200, 200, 220, 0.8);
+  --overlay-title: #c0392b;
+  --toggle-track: #7aa2f7;
+  --toggle-thumb: #fff;
+  --toggle-text: #555;
+  --btn-bg: #3a5fd6;
+  --btn-color: #fff;
+  --btn-hover: #2a4fc6;
+}
+
 body {
-  background: #0f0f17;
-  color: #e0e0e0;
+  background: var(--bg);
+  color: var(--text);
   font-family: system-ui, -apple-system, sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
   user-select: none;
+  transition: background 0.3s, color 0.3s;
 }
 
 .wrapper {
@@ -24,9 +67,60 @@ body {
   font-size: 32px;
   font-weight: 800;
   letter-spacing: 8px;
-  color: #7aa2f7;
+  color: var(--accent);
   text-align: center;
   margin-bottom: 16px;
+}
+
+/* ---- Theme toggle ---- */
+.theme-toggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.toggle-label input {
+  display: none;
+}
+
+.toggle-track {
+  width: 40px;
+  height: 20px;
+  background: var(--toggle-track);
+  border-radius: 10px;
+  position: relative;
+  transition: background 0.3s;
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  background: var(--toggle-thumb);
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.toggle-label input:checked + .toggle-track .toggle-thumb {
+  transform: translateX(20px);
+}
+
+.toggle-text {
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--toggle-text);
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: color 0.3s;
 }
 
 .game-container {
@@ -37,10 +131,11 @@ body {
 
 #board {
   display: block;
-  border: 1px solid #2a2a3a;
-  background: #1a1a25;
+  border: 1px solid var(--board-border);
+  background: var(--board-bg);
   border-radius: 4px;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+  transition: background 0.3s, border-color 0.3s;
 }
 
 /* ---- Panel lateral ---- */
@@ -61,23 +156,26 @@ body {
 .label {
   font-size: 10px;
   letter-spacing: 2px;
-  color: #555570;
+  color: var(--label);
   font-weight: 600;
+  transition: color 0.3s;
 }
 
 .value {
   font-family: 'Courier New', Courier, monospace;
   font-size: 26px;
   font-weight: 700;
-  color: #7aa2f7;
+  color: var(--accent);
   letter-spacing: 1px;
+  transition: color 0.3s;
 }
 
 #next-canvas {
   display: block;
-  border: 1px solid #2a2a3a;
-  background: #1a1a25;
+  border: 1px solid var(--board-border);
+  background: var(--board-bg);
   border-radius: 4px;
+  transition: background 0.3s, border-color 0.3s;
 }
 
 /* ---- Controles ---- */
@@ -90,20 +188,22 @@ body {
 
 .controls li {
   font-size: 12px;
-  color: #888;
+  color: var(--controls-text);
   display: flex;
   align-items: center;
   gap: 4px;
+  transition: color 0.3s;
 }
 
 kbd {
-  background: #22223a;
-  border: 1px solid #3a3a5a;
+  background: var(--kbd-bg);
+  border: 1px solid var(--kbd-border);
   border-radius: 3px;
   padding: 1px 6px;
   font-size: 11px;
   font-family: inherit;
-  color: #aaa;
+  color: var(--kbd-color);
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
 }
 
 /* ---- Overlay ---- */
@@ -113,9 +213,10 @@ kbd {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(10, 10, 20, 0.75);
+  background: var(--overlay-bg);
   backdrop-filter: blur(4px);
   border-radius: 4px;
+  transition: background 0.3s;
 }
 
 .overlay.hidden {
@@ -134,19 +235,21 @@ kbd {
   font-size: 28px;
   font-weight: 800;
   letter-spacing: 4px;
-  color: #e57373;
+  color: var(--overlay-title);
+  transition: color 0.3s;
 }
 
 #overlay-score {
   font-family: 'Courier New', Courier, monospace;
   font-size: 14px;
-  color: #7aa2f7;
+  color: var(--accent);
+  transition: color 0.3s;
 }
 
 #restart-btn {
   margin-top: 8px;
-  background: #7aa2f7;
-  color: #0f0f17;
+  background: var(--btn-bg);
+  color: var(--btn-color);
   border: none;
   border-radius: 6px;
   padding: 10px 28px;
@@ -154,9 +257,9 @@ kbd {
   font-weight: 700;
   cursor: pointer;
   letter-spacing: 1px;
-  transition: background 0.15s;
+  transition: background 0.15s, color 0.15s;
 }
 
 #restart-btn:hover {
-  background: #9bbdff;
+  background: var(--btn-hover);
 }
