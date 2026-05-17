@@ -23,6 +23,11 @@
   --btn-bg: #7aa2f7;
   --btn-color: #0f0f17;
   --btn-hover: #9bbdff;
+  --btn-danger-bg: #e57373;
+  --btn-danger-hover: #ef9a9a;
+  --table-header: #555570;
+  --table-border: #2a2a3a;
+  --table-highlight: rgba(122, 162, 247, 0.18);
 }
 
 body.light {
@@ -44,6 +49,11 @@ body.light {
   --btn-bg: #3a5fd6;
   --btn-color: #fff;
   --btn-hover: #2a4fc6;
+  --btn-danger-bg: #c0392b;
+  --btn-danger-hover: #e74c3c;
+  --table-header: #7070a0;
+  --table-border: #b0b0cc;
+  --table-highlight: rgba(58, 95, 214, 0.14);
 }
 
 body {
@@ -229,6 +239,9 @@ kbd {
   flex-direction: column;
   gap: 12px;
   align-items: center;
+  max-width: 280px;
+  width: 100%;
+  padding: 0 12px;
 }
 
 #overlay-title {
@@ -239,15 +252,22 @@ kbd {
   transition: color 0.3s;
 }
 
-#overlay-score {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 14px;
-  color: var(--accent);
-  transition: color 0.3s;
+#overlay-content {
+  width: 100%;
+  font-size: 13px;
+  color: var(--text);
 }
 
-#restart-btn {
-  margin-top: 8px;
+#overlay-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+}
+
+/* ---- Botones ---- */
+.btn {
   background: var(--btn-bg);
   color: var(--btn-color);
   border: none;
@@ -258,8 +278,115 @@ kbd {
   cursor: pointer;
   letter-spacing: 1px;
   transition: background 0.15s, color 0.15s;
+  width: 100%;
+  max-width: 220px;
 }
 
-#restart-btn:hover {
+.btn:hover {
   background: var(--btn-hover);
+}
+
+.btn-danger {
+  background: var(--btn-danger-bg);
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background: var(--btn-danger-hover);
+}
+
+/* ---- Tabla de records ---- */
+.hs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.hs-table th {
+  color: var(--table-header);
+  font-size: 10px;
+  letter-spacing: 1px;
+  padding: 3px 4px;
+  border-bottom: 1px solid var(--table-border);
+  text-align: center;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.hs-table td {
+  padding: 4px 4px;
+  text-align: center;
+  border-bottom: 1px solid var(--table-border);
+  color: var(--text);
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11px;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.hs-table td:nth-child(2) {
+  text-align: left;
+  max-width: 70px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hs-table tr.hs-highlight td {
+  background: var(--table-highlight);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.hs-empty {
+  color: var(--label);
+  font-size: 12px;
+  padding: 8px 0;
+  text-align: center;
+}
+
+.hs-stats {
+  font-size: 11px;
+  color: var(--label);
+  text-align: center;
+  margin-top: 4px;
+  transition: color 0.3s;
+}
+
+/* ---- Input guardar nombre ---- */
+.hs-name-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  width: 100%;
+}
+
+.hs-name-row label {
+  font-size: 12px;
+  color: var(--label);
+  letter-spacing: 1px;
+}
+
+.hs-name-input {
+  background: var(--kbd-bg);
+  border: 1px solid var(--kbd-border);
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 14px;
+  color: var(--text);
+  width: 100%;
+  max-width: 200px;
+  text-align: center;
+  outline: none;
+  transition: background 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.hs-name-input:focus {
+  border-color: var(--accent);
+}
+
+.hs-score-info {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 13px;
+  color: var(--accent);
 }
