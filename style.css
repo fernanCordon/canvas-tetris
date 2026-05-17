@@ -246,8 +246,20 @@ kbd {
   transition: color 0.3s;
 }
 
-#restart-btn {
-  margin-top: 8px;
+.overlay-view.hidden {
+  display: none;
+}
+
+.overlay-heading {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+/* Shared button style for overlay buttons */
+.overlay-box button {
   background: var(--btn-bg);
   color: var(--btn-color);
   border: none;
@@ -257,9 +269,193 @@ kbd {
   font-weight: 700;
   cursor: pointer;
   letter-spacing: 1px;
+  width: 220px;
   transition: background 0.15s, color 0.15s;
 }
 
-#restart-btn:hover {
+.overlay-box button:hover {
   background: var(--btn-hover);
+}
+
+/* Controls list inside overlay */
+.overlay-keys {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+  font-size: 13px;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.overlay-keys li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.key-combo {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  min-width: 90px;
+}
+
+/* Level picker */
+.level-picker {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.level-picker button {
+  width: auto;
+  padding: 6px 16px;
+  font-size: 18px;
+}
+
+.level-hint {
+  font-size: 11px;
+  color: var(--label);
+  letter-spacing: 0.5px;
+}
+
+/* ---- Skin selector ---- */
+.skin-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.skin-btn {
+  background: var(--kbd-bg);
+  color: var(--kbd-color);
+  border: 1px solid var(--kbd-border);
+  border-radius: 4px;
+  padding: 3px 7px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.skin-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.skin-btn.active {
+  background: var(--accent);
+  color: var(--btn-color);
+  border-color: var(--accent);
+}
+
+/* ---- Highscores table ---- */
+.hs-table {
+  border-collapse: collapse;
+  font-size: 12px;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.hs-table th {
+  color: var(--label);
+  letter-spacing: 1px;
+  font-size: 10px;
+  padding: 4px 8px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--board-border);
+}
+
+.hs-table td {
+  padding: 5px 8px;
+  color: var(--text);
+  text-align: center;
+  transition: color 0.3s;
+}
+
+.hs-table td:nth-child(2) {
+  text-align: left;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.hs-table tr.hs-new td {
+  color: #ffd54f;
+  font-weight: 700;
+}
+
+.hs-empty {
+  color: var(--label);
+  font-size: 12px;
+  padding: 10px 0;
+}
+
+.hs-stats {
+  font-size: 11px;
+  color: var(--label);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+.hs-stats strong {
+  color: var(--accent);
+}
+
+/* Secondary button variant — higher specificity overrides .overlay-box button */
+.overlay-box button.btn-secondary {
+  background: transparent;
+  color: var(--label);
+  border: 1px solid var(--board-border);
+  font-size: 12px;
+  padding: 6px 16px;
+}
+
+.overlay-box button.btn-secondary:hover {
+  color: var(--text);
+  border-color: var(--text);
+  background: transparent;
+}
+
+/* Game-over name input row */
+.hs-enter-label {
+  font-size: 13px;
+  color: var(--text);
+}
+
+.go-name-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.go-name-row input {
+  flex: 1;
+  background: var(--kbd-bg);
+  border: 1px solid var(--kbd-border);
+  border-radius: 4px;
+  padding: 7px 10px;
+  color: var(--text);
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.go-name-row input:focus {
+  border-color: var(--accent);
+}
+
+.go-name-row button {
+  width: auto !important;
+  padding: 8px 16px !important;
+  font-size: 13px !important;
 }

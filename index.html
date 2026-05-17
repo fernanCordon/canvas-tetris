@@ -43,6 +43,16 @@
           <canvas id="next-canvas" width="120" height="120"></canvas>
         </div>
 
+        <div class="panel-section">
+          <span class="label">SKIN</span>
+          <div class="skin-selector">
+            <button class="skin-btn" data-skin="retro">Retro</button>
+            <button class="skin-btn" data-skin="neon">Neon</button>
+            <button class="skin-btn" data-skin="pastel">Pastel</button>
+            <button class="skin-btn" data-skin="pixel">Pixel</button>
+          </div>
+        </div>
+
         <div class="panel-section controls">
           <span class="label">CONTROLS</span>
           <ul>
@@ -57,11 +67,64 @@
     </div>
 
     <div id="overlay" class="overlay hidden">
-      <div class="overlay-box">
+
+      <!-- Vista: game over -->
+      <div id="view-gameover" class="overlay-box overlay-view">
         <p id="overlay-title">GAME OVER</p>
         <p id="overlay-score"></p>
-        <button id="restart-btn">Reiniciar</button>
+        <div id="go-name-section" class="hidden">
+          <p class="hs-enter-label">¡Entraste en el top 5! Tu nombre:</p>
+          <div class="go-name-row">
+            <input id="go-name-input" type="text" maxlength="20" placeholder="Anónimo" />
+            <button id="go-save-btn">Guardar</button>
+          </div>
+        </div>
+        <div id="go-table-container" class="hidden"></div>
+        <button id="restart-btn">↺ Jugar de nuevo</button>
       </div>
+
+      <!-- Vista: menú de pausa -->
+      <div id="view-pause" class="overlay-box overlay-view hidden">
+        <p class="overlay-heading">PAUSA</p>
+        <button id="btn-resume">▶ Reanudar</button>
+        <button id="btn-restart-pause">↺ Reiniciar</button>
+        <button id="btn-controls">? Ver controles</button>
+        <button id="btn-startlevel">⚙ Nivel inicial: <span id="startlevel-display">1</span></button>
+      </div>
+
+      <!-- Vista: controles -->
+      <div id="view-controls" class="overlay-box overlay-view hidden">
+        <p class="overlay-heading">CONTROLES</p>
+        <ul class="overlay-keys">
+          <li><span class="key-combo"><kbd>←</kbd><kbd>→</kbd></span> mover</li>
+          <li><span class="key-combo"><kbd>↑</kbd> / <kbd>X</kbd></span> rotar</li>
+          <li><span class="key-combo"><kbd>↓</kbd></span> bajar suave</li>
+          <li><span class="key-combo"><kbd>Espacio</kbd></span> caída rápida</li>
+          <li><span class="key-combo"><kbd>P</kbd> / <kbd>Esc</kbd></span> pausa</li>
+        </ul>
+        <button id="btn-back-controls">← Volver</button>
+      </div>
+
+      <!-- Vista: nivel inicial -->
+      <div id="view-startlevel" class="overlay-box overlay-view hidden">
+        <p class="overlay-heading">NIVEL INICIAL</p>
+        <div class="level-picker">
+          <button id="btn-level-dec">◀</button>
+          <span id="level-picker-value">1</span>
+          <button id="btn-level-inc">▶</button>
+        </div>
+        <p class="level-hint">Se aplica en la próxima partida</p>
+        <button id="btn-back-startlevel">← Volver</button>
+      </div>
+
+      <!-- Vista: pantalla de inicio / records -->
+      <div id="view-highscores" class="overlay-box overlay-view hidden">
+        <p class="overlay-heading">RECORDS</p>
+        <div id="hs-table-container"></div>
+        <button id="hs-play-btn">▶ Jugar</button>
+        <button id="hs-reset-btn" class="btn-secondary">🗑 Resetear records</button>
+      </div>
+
     </div>
   </div>
 
